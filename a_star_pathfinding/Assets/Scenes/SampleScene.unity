@@ -206,6 +206,74 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1006990573 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8404842608188461768, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+  m_PrefabInstance: {fileID: 1783066930}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf40051a7c14415693158d6a1cfc81a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &1783066930
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1233409130989515861, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+      propertyPath: m_Name
+      value: Circle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547248012405300095, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547248012405300095, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547248012405300095, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547248012405300095, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547248012405300095, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547248012405300095, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547248012405300095, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547248012405300095, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547248012405300095, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547248012405300095, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547248012405300095, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
 --- !u!1 &2083006685
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2083006687}
   - component: {fileID: 2083006686}
+  - component: {fileID: 2083006688}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -236,9 +305,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   squarePrefab: {fileID: 3206696472475559409, guid: c41aaf6a348294f87b7b22443308cbe8, type: 3}
+  height: 10
+  width: 15
   startPos: {x: 0, y: 0, z: 0}
   interval: 0.5
-  amountOfSolid: 20
+  amountOfSolid: 40
   startSquare: {x: 2, y: 2}
   endSquare: {x: 8, y: 8}
   circlePrefab: {fileID: 1233409130989515861, guid: 4668e2cdcec2c4481a327c0a2a59b583, type: 3}
@@ -256,3 +327,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2083006688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083006685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478e63910fcbe4a49a0d470119a6d91e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridScript: {fileID: 2083006686}
+  circleScript: {fileID: 1006990573}

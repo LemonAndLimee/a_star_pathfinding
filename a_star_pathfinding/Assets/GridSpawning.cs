@@ -7,8 +7,8 @@ public class GridSpawning : MonoBehaviour
 {
     public GameObject squarePrefab;
 
-    int height = 10;
-    int width = 15;
+    public int height = 10;
+    public int width = 15;
 
     public Vector3 startPos;
     public float interval = 0.5f;
@@ -41,13 +41,13 @@ public class GridSpawning : MonoBehaviour
                 {
                     GameObject circle = Instantiate(circlePrefab);
                     circle.transform.position = obj.transform.position;
-                    circle.GetComponent<CircleLogic>().startPos = startSquare;
-                    circle.GetComponent<CircleLogic>().target = endSquare;
-                    squareScript.isStartSquare = true;
+                    //circle.GetComponent<CircleLogic>().startPos = startSquare;
+                    //circle.GetComponent<CircleLogic>().target = endSquare;
+                    //squareScript.isStartSquare = true;
                 }
                 else if (endSquare == new Vector2Int(x, y))
                 {
-                    squareScript.isEndSquare = true;
+                    //squareScript.isEndSquare = true;
                 }
 
                 int num = Random.Range(1, 100);

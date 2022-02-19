@@ -15,7 +15,7 @@ public struct node
         pos = position;
         parentPos = currentSquarePos;
         g = parentG + 1;
-        h = (int)(Mathf.Pow(target.x-currentSquarePos.x, 2) + Mathf.Pow(target.y-currentSquarePos.y, 2));
+        h = (int)(Mathf.Pow(target.x-pos.x, 2) + Mathf.Pow(target.y-pos.y, 2));
         f = g + h;
     }
 }
@@ -36,8 +36,13 @@ public class CircleLogic : MonoBehaviour
 
     public List<Vector2Int> path = new List<Vector2Int>();
 
-    // Start is called before the first frame update
     void Start()
+    {
+        //Run();
+    }
+
+    // Start is called before the first frame update
+    public void Run()
     {
         gridScript = GameObject.Find("GameManager").GetComponent<GridSpawning>();
 
@@ -78,23 +83,33 @@ public class CircleLogic : MonoBehaviour
                 {
                     for (int y = currentSquare.pos.y - 1; y <= currentSquare.pos.y + 1; y++)
                     {
+                        Debug.Log(new Vector2(x, y) + ": " + closedListCoords.IndexOf(new Vector2Int(x, y)));
                         if (!closedListCoords.Contains(new Vector2Int(x, y)))
                         {
-                            if (x < gridScript.squares.Count)
+                            if (x >= 0 && x < gridScript.width)
                             {
-                                if (y < gridScript.squares[x].Count)
+                                if (y >= 0 && y < gridScript.height)
                                 {
+                                    if(x == 8 && y == 8)
+                                    {
+                                        Debug.Log("test0");
+                                    }
                                     GameObject square = gridScript.squares[x][y];
                                     if (square.GetComponent<SquareLogic>().isSolid == false)
                                     {
+                                        if (x == 8 && y == 8)
+                                        {
+                                            Debug.Log("test1");
+                                        }
                                         if (openListCoords.Contains(new Vector2Int(x, y)))
                                         {
                                             int index = openListCoords.IndexOf(new Vector2Int(x, y));
-                                            Debug.Log(index);
                                             if (currentSquare.g + 1 < openList[index].g)
                                             {
                                                 Vector2Int pos = openList[index].pos;
                                                 openList[index] = new node(pos, currentSquare.pos, currentSquare.g, target);
+                                                Debug.Log("update");
+                                                DisplayNodeStats(openList[index]);
                                             }
                                         }
                                         else
@@ -102,6 +117,7 @@ public class CircleLogic : MonoBehaviour
                                             node newSquare = new node(new Vector2Int(x, y), currentSquare.pos, currentSquare.g, target);
                                             openList.Add(newSquare);
                                             openListCoords.Add(newSquare.pos);
+                                            DisplayNodeStats(newSquare);
                                         }
 
                                     }
@@ -120,19 +136,41 @@ public class CircleLogic : MonoBehaviour
         {
             Vector2Int currentPos = target;
             int index = closedListCoords.IndexOf(target);
-            Debug.Log(index);
             node currentNode = closedList[index];
             while (currentPos != startPos)
             {
                 currentPos = currentNode.parentPos;
                 index = closedListCoords.IndexOf(currentPos);
                 currentNode = closedList[index];
-                Debug.Log("boop");
                 path.Add(currentPos);
 
-                
+                if (currentPos != startPos)
+                {
+                    gridScript.squares[currentNode.pos.x][currentNode.pos.y].GetComponent<SquareLogic>().isPath = true;
+                }
             }
         }
+    }
+
+    void DisplayNodeStats(node n)
+    {
+        //Debug.Log(new Vector2(target.x - n.pos.x, target.y - n.pos.y));
+        Debug.Log(n.pos.x.ToString() + "," + n.pos.y.ToString() + ": " + n.f + "," + n.g + "," + n.h + ": " + n.parentPos);
+    }
+
+    public void ErasePath()
+    {
+        for (int i = path.Count-1; i >= 0; i--)
+        {
+            Vector2Int pos = path[i];
+            gridScript.squares[pos.x][pos.y].GetComponent<SquareLogic>().isPath = false;
+            path.RemoveAt(i);
+        }
+        openList.Clear();
+        openListCoords.Clear();
+        closedList.Clear();
+        closedListCoords.Clear();
+        
     }
 
     // Update is called once per frame
